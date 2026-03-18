@@ -1,0 +1,42 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-color: #f5f5f5;
+}
+
+.profile-card {
+  background: white;
+  padding: 30px;
+  width: 350px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+  width: 100px;
+  margin-bottom: 15px;
+}
+
+.profile-card input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+}
+
+.profile-card button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  border: none;
+  background-color: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.logout-btn {
+  background-color: gray;
+  margin-left: 10px;
+}

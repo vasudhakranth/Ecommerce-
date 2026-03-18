@@ -1,0 +1,113 @@
+/* Layout & Background */
+.landing-container {
+  min-height: 100vh;
+  background-color: #1a1a2e; /* Deep dark blue background */
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.nav-logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-auth .nav-btn {
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  margin-left: 15px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.login {
+  color: white;
+  border: 1px solid rgb(20, 3, 3);
+}
+
+.signup {
+  background-color: #ffffff;
+  color: #1a1a2e;
+}
+
+/* Hero Section Styling */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 80px); /* Adjust based on nav height */
+  padding: 0 10%;
+}
+
+.hero-left, .hero-right {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Hero Left: Image with purple glow */
+.image-wrapper {
+  position: relative;
+  width: 80%;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(166, 75, 244, 0.4);
+}
+
+.image-wrapper img {
+  width: 100%;
+  display: block;
+}
+
+/* Hero Right: Content */
+.hero-title {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #b0b0c0;
+  margin-bottom: 40px;
+  max-width: 400px;
+}
+
+.get-started-btn {
+  padding: 15px 40px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #a64bf4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(166, 75, 244, 0.3);
+  transition: 0.3s;
+}
+
+.get-started-btn:hover {
+  background-color: #7a2ed3;
+  transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 50px;
+  }
+  .hero-subtitle {
+    margin: 0 auto 40px auto;
+  }
+}
