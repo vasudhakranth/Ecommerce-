@@ -7,7 +7,6 @@ import fashionImage from "../assets/images/fashion image.jpeg";
 const Home = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
-  const [cartCountState, setCartCountState] = useState(0);
   const [user, setUser] = useState(null);
   const { cartCount } = useCart();
 
@@ -39,10 +38,6 @@ const Home = () => {
       .then(res => res.json())
       .then(data => setUsername(data.username));
 
-    // Fetch cart count  
-      fetch(`http://127.0.0.1:8000/cart/${userId}`)
-        .then(res => res.json())
-        .then(data => setCartCountState(data.length));
   }, [user]);
 
   const handleLogout = () => {
@@ -59,7 +54,7 @@ const Home = () => {
             Profile
           </button>
           <button onClick={() => navigate("/cart")} className="nav-btn cart">
-            Cart ({cartCountState})
+            Cart ({cartCount})
           </button>
           <button onClick={handleLogout} className="nav-btn logout">
             Logout

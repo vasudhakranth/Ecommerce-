@@ -1,65 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import './Cart.css';
 
 const Cart = () => {
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState([]);
-
+  const { cartItems, removeFromCart, clearCart, getCartTotal, cartCount } = useCart();
 
   const handleCheckout = async () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  await fetch(`http://127.0.0.1:8000/cart/clear/${user.user_id}`, {
-    method: "DELETE",
-  });
-
-  setCartItems([]);
-  alert('Proceeding to checkout!');
-  navigate('/home');
-};
+    await clearCart();
+    alert('Proceeding to checkout!');
+    navigate('/home');
+  };
 
   useEffect(() => {
-  const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      navigate("/login");
+    }
+  }, []);
 
-  if (!user) {
-    navigate("/login");
-    return;
-  }
-
-  fetch(`http://127.0.0.1:8000/cart/${user.user_id}`)
-    .then(res => res.json())
-    .then(data => setCartItems(data));
-}, []);
-
-const handleRemove = async (id) => {
-  await fetch(`http://127.0.0.1:8000/cart/remove/${id}`, {
-    method: "DELETE",
-  });
-
-  setCartItems(cartItems.filter(item => item.id !== id));
-};
-
-const addToCart = async (product) => {
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  await fetch("http://127.0.0.1:8000/cart/add", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      user_id: user.user_id,
-      product_id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-    }),
-  });
-
-  alert("Added to cart 🛒");
-};
+  const handleRemove = (id) => {
+    removeFromCart(id);
+  };
 
   if (cartItems.length === 0) {
     return (
@@ -72,8 +35,6 @@ const addToCart = async (product) => {
       </div>
     );
   }
-
-  
 
   return (
     <div className="cart-container">
@@ -118,11 +79,11 @@ const addToCart = async (product) => {
         <h2>Order Summary</h2>
         <div className="summary-row">
           <span>Total Items:</span>
-          <span>{cartItems.reduce((acc, item) => acc + item.quantity, 0)}</span>
+          <span>{cartCount}</span>
         </div>
         <div className="summary-row total">
           <span>Total Amount:</span>
-          <span>₹{cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}</span>
+          <span>₹{getCartTotal()}</span>
         </div>
         <button onClick={handleCheckout} className="checkout-btn">
           Proceed to Checkout

@@ -35,7 +35,7 @@ const products = [
   {
     id: 4,
     name: "Floral Print Kurti",
-    price: 899,
+    price: 1,
     category: "Kurti",
     image: kurthi4
   },

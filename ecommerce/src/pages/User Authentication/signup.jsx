@@ -40,8 +40,12 @@ const Registration = () => {
       window.location.href = "/login";
     }
   } catch (error) {
-    console.error("Error:", error);
-    alert("Something went wrong");
+    console.error("Signup error:", error);
+    if (error.name === 'TypeError') {
+      alert("Backend not running? Start with: cd backend && python -m uvicorn main:app --reload");
+    } else {
+      alert(`Signup error: ${error.message || error.detail || 'Try again'}`);
+    }
   }
 };
 

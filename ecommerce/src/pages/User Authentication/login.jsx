@@ -39,8 +39,12 @@ const Login = () => {
       navigate("/home");
     }
   } catch (error) {
-    console.error("Error:", error);
-    alert("Something went wrong");
+    console.error("Login error:", error);
+    if (error.name === 'TypeError') {
+      alert("Backend not running? Start with: cd backend && python -m uvicorn main:app --reload");
+    } else {
+      alert(`Login error: ${error.message || error.detail || 'Try again'}`);
+    }
   }
 };
 
